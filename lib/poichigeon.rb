@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "poichigeon/version"
+require 'poichigeon/version'
+require 'poichigeon/active_records/meteore'
+require "poichigeon/engine"
 
 module Poichigeon
-  class Error < StandardError; end
-  # Your code goes here...
 end
