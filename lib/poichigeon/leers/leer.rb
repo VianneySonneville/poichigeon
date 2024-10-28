@@ -13,26 +13,32 @@ module  Poichigeon::Leers
   private
 
   def leer_before_validate
+    puts "leer_before_validate"
     puts self.inspect
   end
 
   def leer_after_validate
+    puts "leer_after_validate"
     puts self.inspect
   end
 
   def leer_after_create
+    puts "leer_after_create"
     puts self.inspect
   end
 
   def leer_after_update
+    puts "leer_after_update"
     puts self.inspect
   end
 
   def leer_after_destroy
+    puts "leer_after_destroy"
     puts self.inspect
   end
 
   def leer_after_save
+    puts "leer_after_save"
     puts self.inspect
   end
 end
