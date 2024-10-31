@@ -51,7 +51,7 @@ Gem::Specification.new do |spec|
 
   # Uncomment to register a new dependency of your gem
   # rails_version = '8.0.0.rc1'
-  # spec.add_development_dependency 'activerecord', rails_version
+  spec.add_dependency 'activerecord'#, rails_version
   # spec.add_development_dependency 'rails', rails_version
 
   # spec.add_development_dependency 'puma'

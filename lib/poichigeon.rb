@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
-require 'poichigeon/active_records/meteore'
-require 'poichigeon/configuration'
+require 'poichigeon/pokedex'
 require "poichigeon/engine"
-require "poichigeon/leers/leer"
+require "poichigeon/railtie"
+require 'poichigeon/skills/meteore'
+require "poichigeon/skills/leer"
 require 'poichigeon/version'
+require 'rails'
+require 'active_record'
 
 module Poichigeon
   class << self
+    attr_accessor :pokedex
     # Public configuration poichigeon
     #
     # Poichigeon.configure do |config|
@@ -16,12 +20,13 @@ module Poichigeon
     # 
     # Yields Poichigeon::Configuration instance.
     def configure
-      yield configuration if block_given?
-      @configuration.capture
+      yield pokedex if block_given?
+      puts @pokedex.pokeballs.inspect
+      puts @pokedex.pokeballs.first.to_s.classify.constantize.new
     end
 
-    def configuration
-      @configuration ||= Configuration.new
+    def pokedex
+      @pokedex ||= Pokedex.new
     end
   end
 end
