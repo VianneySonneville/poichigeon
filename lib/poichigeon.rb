@@ -6,8 +6,6 @@ require "poichigeon/railtie"
 require 'poichigeon/skills/meteore'
 require "poichigeon/skills/leer"
 require 'poichigeon/version'
-require 'rails'
-require 'active_record'
 
 module Poichigeon
   class << self
@@ -22,8 +20,6 @@ module Poichigeon
     def configure
       yield pokedex if block_given?
       @pokedex.capture
-      # puts @pokedex.pokeballs.inspect
-      # puts @pokedex.pokeballs.first.to_s.classify.constantize.new
     end
 
     def pokedex

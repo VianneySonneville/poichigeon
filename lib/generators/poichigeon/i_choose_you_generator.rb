@@ -16,5 +16,4 @@ module Poichigeon
       template "db/poichigeon_schema.rb"
     end
   end
-  # class IChooseYouGenerator
 end
