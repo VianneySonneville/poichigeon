@@ -21,8 +21,9 @@ module Poichigeon
     # Yields Poichigeon::Configuration instance.
     def configure
       yield pokedex if block_given?
-      puts @pokedex.pokeballs.inspect
-      puts @pokedex.pokeballs.first.to_s.classify.constantize.new
+      @pokedex.capture
+      # puts @pokedex.pokeballs.inspect
+      # puts @pokedex.pokeballs.first.to_s.classify.constantize.new
     end
 
     def pokedex

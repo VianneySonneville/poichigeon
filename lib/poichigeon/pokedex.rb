@@ -3,33 +3,41 @@ module Poichigeon
     attr_accessor :pokeballs
 
     def capture
-      if defined?(Poichigeon::Leers)
-        settings
-      else
-        Rails.logger.warn "Le module Poichigeon::Leers n'a pas pu être chargé."
+      unless defined?(Poichigeon::Leers)
+        Rails.logger.warn "The Poichigeon::Leers module could not be loaded."
+        return
       end
+      settings
     end
 
     def settings
-      setting(pokeball) if pokeball.is_a? Symbol
-      pokeball.each { setting _1 } if pokeball.is_a? Array
+      if pokeballs.is_a? Array
+        pokeballs.each { setting _1 }
+      else
+        setting pokeballs
+      end
     end
 
-    def setting(klass_name)
-      # faire ne sorte de pouvoir récuperer Post ici
-      # puts Post.inspect
-      puts klass_name.to_s.camelize.inspect
-      # puts klass_name.to_s.camelize.constantize.new.class
-      # if defined?(klass_name.to_s.camelize.constantize)
-      #   puts "oui existe"
-      # else
-      #   puts "non existe pas"
-      # end
-    #   klass = klass_name.to_s.camelize.constantize
+    def setting(model)
+      unless klass = klass_from_attribute(model)
+        Rails.logger.warn "the #{model} can not be convert to valid ActiveRecord class"
+        return
+      end
+      klass.include Poichigeon::Leers
+    end
 
-    #   klass.include Poichigeon::Leers if defined?(klass)
-    # rescue
-    #   Rails.logger.warn "le module #{klass_name.to_s.camelize} n'est pas définie"
+
+    def klass_from_attribute(model)
+      # if :model given
+      return model.to_s.classify.constantize if model.is_a? Symbol 
+      # if Model given
+      return model if model < ActiveRecord::Base
+      # if Model.new given
+      return model.class if model.is_a? ActiveRecord::Base
+      nil
+    rescue NameError => e
+      Rails.logger.warn "Constantiize model error: #{e.message}"
+      nil
     end
   end
 end
