@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'poichigeon/pokedex'
 require "poichigeon/engine"
 require "poichigeon/railtie"
 require 'poichigeon/skills/meteore'
