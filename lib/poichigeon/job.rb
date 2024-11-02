@@ -1,3 +1,5 @@
+require "poichigeon/records/meteore"
+
 module Poichigeon
   class Job < ActiveJob::Base
     queue_as :default

@@ -11,11 +11,6 @@
 
 module Poichigeon
   class Meteore < ActiveRecord::Base
-    after_create :prepapre
     serialize :targets
-    def prepapre
-      puts "###################################"
-      puts "skill meteore !"
-    end
   end
 end

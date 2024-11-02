@@ -1,3 +1,5 @@
+require "poichigeon/job"
+
 module  Poichigeon::Leers
   extend ActiveSupport::Concern
 
@@ -54,7 +56,6 @@ module  Poichigeon::Leers
   end
 
   def do_callback(callback)
-    require "poichigeon/job"
     return if self.class.send("atrs_leer_#{callback}").nil?
 
     Poichigeon::Job.perform_later(

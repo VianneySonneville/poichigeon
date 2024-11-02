@@ -1,9 +1,12 @@
+require "poichigeon/records/meteore"
+
 module Poichigeon
   class PoichigeonController < ActionController::Base
     include ActionController::Live
 
-    def stream
-      response.headers["Content-TYpe"] = "text/event-stream"
+    def fly
+      response.headers["Content-Type"] = "text/event-stream"
+      response.headers["Cache-Control"] = "no-cache"
 
       loop do
         poichigeon_attack = Meteore.attack(params[targets])
