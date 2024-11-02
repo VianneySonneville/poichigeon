@@ -7,9 +7,10 @@ module Poichigeon
     def fly
       response.headers["Content-Type"] = "text/event-stream"
       response.headers["Cache-Control"] = "no-cache"
+      response.headers['Connection'] = 'keep-alive'
 
       loop do
-        poichigeon_attack = Meteore.attack(params[targets])
+        poichigeon_attack = Meteore.attack(params[:targets])
 
         if poichigeon_attack.present?
 
