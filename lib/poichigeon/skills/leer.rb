@@ -30,12 +30,17 @@ module  Poichigeon::Leers
   class_methods do
 
     POICHIGEON_CALLBACKS.each do |callback|
-      define_method("leer_#{callback}") do |options = {}|
-        instance_variable_set("@opts_leer_#{callback}", options)
+      define_method("leer_#{callback}") do |*atrs,**opts|
+        instance_variable_set("@atrs_leer_#{callback}", atrs)
+        instance_variable_set("@opts_leer_#{callback}", opts)
+      end
+
+      define_method("atrs_leer_#{callback}") do
+        instance_variable_get("@atrs_leer_#{callback}") || nil
       end
 
       define_method("opts_leer_#{callback}") do
-        instance_variable_get("@opts_leer_#{callback}") || {}
+        instance_variable_get("@opts_leer_#{callback}") || nil
       end
     end
   end
@@ -44,13 +49,21 @@ module  Poichigeon::Leers
 
   POICHIGEON_CALLBACKS.each do |callback|
     define_method("can_leer_#{callback}") do
-      log_callback(callback)
+      do_callback(callback)
     end
   end
 
-  def log_callback(callback)
-    puts "#{callback} -------------------------"
-    puts self.class.send("opts_leer_#{callback}") # les params du callback
-    puts "end ------------------------"
+  def do_callback(callback)
+    require "poichigeon/job"
+    return if self.class.send("atrs_leer_#{callback}").nil?
+
+    Poichigeon::Job.perform_later(
+      klass_type: self.class.name,
+      model_id: self.id,
+      callback:,
+      targets: self.class.send("atrs_leer_#{callback}"),
+      views: self.class.send("opts_leer_#{callback}")[:views],
+      path: self.class.send("opts_leer_#{callback}")[:path]
+    )
   end
 end

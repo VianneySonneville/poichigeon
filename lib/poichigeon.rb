@@ -2,9 +2,9 @@
 
 require "poichigeon/engine"
 require "poichigeon/railtie"
+require 'poichigeon/version'
 require 'poichigeon/skills/meteore'
 require "poichigeon/skills/leer"
-require 'poichigeon/version'
 
 module Poichigeon
   class << self
