@@ -13,7 +13,7 @@ module Poichigeon
 
     initializer "poichigeon.add_routes" do |app|
       app.routes.draw do
-        get "poichigeon", to: "poichigeon_controller#fly"
+        get "poichigeon", to: "poichigeon/poichigeon#fly"
       end
     end
   end
