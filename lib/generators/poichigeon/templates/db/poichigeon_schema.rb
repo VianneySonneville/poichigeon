@@ -6,7 +6,7 @@ ActiveRecord::Schema[8.0].define(version: 1) do
     t.string :targets
     t.string :path
     t.integer :views
-  
+    t.boolean :read, default: false
     t.timestamps
   end
 end

@@ -6,7 +6,7 @@ class CreateMeteoreTable < ActiveRecord::Migration[8.0]
     t.string :targets
     t.string :path
     t.integer :views
-  
+    t.boolean :read, default: false
     t.timestamps
   end
 end
