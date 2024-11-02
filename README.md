@@ -28,4 +28,9 @@ in route.rb
     get "poichigeon" => "poichigeon/poichigeon#fly"
   # mount Poichigeon::Engine, at: "/poichigeon"
  todo fix this
++import controller js
++ import css
++ data conroller target = ...
+
+cabler la decu
 
