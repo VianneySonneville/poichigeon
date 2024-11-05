@@ -1,42 +1,42 @@
+
 # poichigeon
-
 [![Gem Version](https://badge.fury.io/rb/poichigeon.svg)](http://badge.fury.io/rb/poichigeon)
-
-A library that automates notifications during crud
-
+A library that automates notifications during callback arround before and after:
+ - save
+ - validate
+ - create
+ - update
+ - destroy
 ## Installation
-
 Run:
 
     bundle add poichigeon
 
 Or install it yourself as:
 
-    $ gem install poichigeon
+    gem install poichigeon
 
-## Usage
-
+## Set up
 run:
 
     rails g poichigeon:i_choose_you
 
 this commande it's use for:
+
 - generate migration for poichigeon to use skill meteore!
-- generate configuration to use this
 
-in route.rb
-    get "poichigeon" => "poichigeon/poichigeon#fly"
-  # mount Poichigeon::Engine, at: "/poichigeon"
- todo fix this
-+ import controller js
-+ import css
-+ data conroller target = ...
+## How to use
 
-in application.html.erb
+ - todo complete
 
-+ import helper with: <%= poichigeon_bide %>
+model:
+ 
+		class  Post  <  ApplicationRecord
+			validates  :title, presence:  true
+			leer_before_validate
+			leer_after_validate  "test", foo:  :bar
+		end
 
-+ <%= javascript_include_tag 'poichigeon_controller' %>
+view:
 
-cabler la decu
-
+		<%= poichigeon_bide %>
