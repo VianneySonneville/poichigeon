@@ -1,5 +1,7 @@
 require 'rails/railtie'
 require "poichigeon/concerns/leers"
+require "poichigeon/helpers/helpers"
+
 module Poichigeon
   class Railtie < ::Rails::Railtie
     initializer "poichigeon.active_record" do |app|
@@ -20,6 +22,12 @@ module Poichigeon
     initializer 'poichigeon.before_initialize' do
       ActiveSupport.on_load(:active_record) do
         ::ActiveRecord::Base.send :include, Leers
+      end
+    end
+
+    initializer "poichigeon.add_route" do
+      Rails.application.routes.append do
+        get "poichigeon", to: "poichigeon/poichigeon#fly"
       end
     end
   end

@@ -34,6 +34,8 @@ in route.rb
 
 in application.html.erb
 
++ import helper with: <%= poichigeon_bide %>
+
 + <%= javascript_include_tag 'poichigeon_controller' %>
 
 cabler la decu
