@@ -1,6 +1,6 @@
 module Poichigeon
   module Helpers
-    def Poichigeon
+    def bide
       tag.div data: { controler: :poichigeon }
     end
   end
