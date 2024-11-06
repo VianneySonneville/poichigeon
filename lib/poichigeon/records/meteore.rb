@@ -12,5 +12,7 @@
 module Poichigeon
   class Meteore < ActiveRecord::Base
     serialize :targets
+
+    scope :attack, -> (targets) { where("targets LIKE ?", "%#{target}%") }
   end
 end

@@ -34,7 +34,7 @@ model:
 		class  Post  <  ApplicationRecord
 			validates  :title, presence:  true
 			leer_before_validate
-			leer_after_validate  "test", foo:  :bar
+			leer_after_create  "test", target: [:]
 		end
 
 view:
